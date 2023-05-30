@@ -16,11 +16,11 @@ export const ContactForm = () => {
 
   const isDublicate = ({ name, phone }) => {
     const refName = name.toLowerCase().trim();
-    const refphone = phone.trim();
+    const refNumber = phone.trim();
 
     const dublicate = contacts.find(
       contact =>
-        contact.name.toLowerCase() === refName || contact.phone === refphone
+        contact.name.toLowerCase() === refName || contact.phone === refNumber
     );
     return Boolean(dublicate);
   };
