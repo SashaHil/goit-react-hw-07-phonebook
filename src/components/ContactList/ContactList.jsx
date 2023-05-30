@@ -27,14 +27,18 @@ export const ContactList = () => {
   return (
     <>
       {isLoading && <Loader />}
+
+      {!filteredContacts?.length && !error && !isLoading && (
+        <b>No contacts found.</b>
+      )}
       {error && <b>{error}</b>}
 
       <ul>
-        {filteredContacts.map(({ id, name, number }) => {
+        {filteredContacts.map(({ id, name, phone }) => {
           return (
             <ListItem key={id}>
               <Name>{name}: </Name>
-              <p>{number} </p>
+              <p>{phone} </p>
               <Button type="button" onClick={() => handleDelete(id)}>
                 Delete
               </Button>

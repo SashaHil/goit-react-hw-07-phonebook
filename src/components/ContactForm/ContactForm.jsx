@@ -20,8 +20,7 @@ export const ContactForm = () => {
 
     const dublicate = contacts.find(
       contact =>
-        contact.name.toLowerCase().trim() === refName ||
-        contact.number.trim() === refNumber.trim()
+        contact.name.toLowerCase() === refName || contact.number === refNumber
     );
     return Boolean(dublicate);
   };
