@@ -8,7 +8,6 @@ const handlePending = state => {
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
-  console.log('Rejected with payload:', action.payload);
 };
 
 const contactsSlice = createSlice({
