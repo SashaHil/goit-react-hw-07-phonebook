@@ -7,36 +7,36 @@ import { addContact } from 'redux/operations';
 
 const InputSchema = Yup.object().shape({
   name: Yup.string().required('Must be required'),
-  number: Yup.string().required('Must be required'),
+  phone: Yup.string().required('Must be required'),
 });
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  const isDublicate = ({ name, number }) => {
+  const isDublicate = ({ name, phone }) => {
     const refName = name.toLowerCase().trim();
-    const refNumber = number.trim();
+    const refphone = phone.trim();
 
     const dublicate = contacts.find(
       contact =>
-        contact.name.toLowerCase() === refName || contact.number === refNumber
+        contact.name.toLowerCase() === refName || contact.phone === refphone
     );
     return Boolean(dublicate);
   };
 
-  const onAddContact = ({ name, number }) => {
-    if (isDublicate({ name, number })) {
-      return alert(`${name} or ${number} is already in contacts.`);
+  const onAddContact = ({ name, phone }) => {
+    if (isDublicate({ name, phone })) {
+      return alert(`${name} or ${phone} is already in contacts.`);
     }
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ name, phone }));
   };
 
   return (
     <Formik
       initialValues={{
         name: '',
-        number: '',
+        phone: '',
       }}
       validationSchema={InputSchema}
       onSubmit={(values, { resetForm }) => {
@@ -62,14 +62,14 @@ export const ContactForm = () => {
           Number
           <Field
             type="tel"
-            name="number"
+            name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
         </Label>
 
-        <ErrorMessage name="number" component="div" />
+        <ErrorMessage name="phone" component="div" />
         <Button type="submit">Add contact</Button>
       </Form>
     </Formik>
