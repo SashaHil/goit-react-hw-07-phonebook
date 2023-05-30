@@ -1,16 +1,18 @@
+import { Layout } from './Layout/Layout';
+import { Section } from './Section/Section';
+import { ContactForm } from './ContactForm/ContactForm';
+import { ContactList } from './ContactList/ContactList';
+import { Filter } from './Filter/Filter';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Layout>
+      <Section title="Phonebook"></Section>
+      <ContactForm />
+
+      <Section title="Contacts"></Section>
+      <Filter />
+      <ContactList />
+    </Layout>
   );
 };
